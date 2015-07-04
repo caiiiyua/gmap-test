@@ -1,0 +1,30 @@
+body, html {
+	height: 100%;
+}
+
+/*div {
+	border: solid 1px red;
+}*/
+
+.footer {
+  /*position: absolute;*/
+  bottom: 0;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+.container .text-muted {
+  margin: 20px 0;
+}
+
+.container {
+	height: 100%;
+}
+
+map {
+	height: 640px;
+}
