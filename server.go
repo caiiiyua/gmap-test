@@ -75,8 +75,10 @@ func sfvTaskSchedule() {
 
 func main() {
 	router := httprouter.New()
+	router.ServeFiles("/html/*filepath", http.Dir("public/html"))
 	router.ServeFiles("/js/*filepath", http.Dir("public/js"))
 	router.ServeFiles("/css/*filepath", http.Dir("public/css"))
+	router.ServeFiles("/bower/*filepath", http.Dir("public/bower_components"))
 	router.GET("/", Index)
 	router.GET("/user", UserGetHandler)
 	router.POST("/user", UserPostHandler)
@@ -103,6 +105,8 @@ func main() {
 	// if err != nil {
 	// 	log.Fatal("database sync failed", err)
 	// }
+
+	// http.Handle("/", http.FileServer(http.Dir("public/")))
 
 	fmt.Println("Listending at 8080 ...")
 	log.Fatal(http.ListenAndServe(":8080", router))

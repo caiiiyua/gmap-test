@@ -1,0 +1,43 @@
+<div ng-controller="GMapCtrl as gmap">	
+<nav class="row navbar navbar-default">
+	<ul class="nav nav-pills">
+	  	<li ng-class="{active:gmap.isTab(1)}" ng-click="gmap.setTab(1)"><a>Location and Zoom</a></li>
+	  	<li ng-class="{active:gmap.isTab(2)}" ng-click="gmap.setTab(2)"><a>Direction</a></li>
+	</ul>
+</nav>
+<div class="container">
+	<div class="row">
+	<form>
+	  <div class="form-group" ng-show="gmap.isTab(1)">
+	    <label for="location">Location:</label>
+	    <input id="location" type="text" ng-model="location">
+	  </div>
+
+	  <div class="form-group" ng-show="gmap.isTab(2)">
+	    <label for="origin">Original:</label>
+	    <input id="origin" type="text" ng-model="origin" ng-init="origin='london'">
+	    <label for="destination">Destination:</label>
+	    <input id="destination" type="text" ng-model="destination" ng-init="destination='berlin'">
+	    <div class="travel-mode">   
+	    <b>Mode of Travel: </b>
+	      <select ng-model="travelMode" ng-init="travelMode='DRIVING'">
+	      <option value="DRIVING">Driving</option>
+	      <option value="WALKING">Walking</option>
+	      <option value="BICYCLING">Bicycling</option>
+	      <option value="TRANSIT">Transit</option>
+	      </select>
+	    </div>
+	  </div>
+	</form>
+	</div>
+	<div class="row">
+		<div class="col-md-8 map-panel">
+			MAP
+			<gmap style="width: 100%; height:700px;"></gmap>
+		</div>
+		<div class="col-md-4 sidebar">
+			PANEL
+		</div>
+	</div>
+</div>
+</div>

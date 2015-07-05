@@ -2,6 +2,22 @@ body, html {
 	height: 100%;
 }
 
+.nav {
+	padding-top: 20px;
+}
+
+.nav a {
+  color: #5a5a5a;
+  font-size: 22px;
+  font-weight: bold;
+  padding: 20px 10px;
+  text-transform: uppercase;
+}
+
+.nav li {
+  display: inline;
+}
+
 /*div {
 	border: solid 1px red;
 }*/
@@ -27,4 +43,11 @@ body, html {
 
 map {
 	height: 640px;
+}
+
+.label {
+	background-color: #3bb;
+	width: 22%;
+	font-size: 18px;
+	padding: 5px 8px;
 }

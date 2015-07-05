@@ -3,75 +3,37 @@
 <html ng-app="myapp">
   <head>
     <title>Google Map API Testing</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/css/index.css">
     <link rel="shortcut icon" type="image/png" href="/public/img/favicon.png">
+    <script src="http://ditu.google.cn/maps/api/js?sensor=false"></script>
     <script src="/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/js/angular.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/bower/angular/angular.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/bower/angular-route/angular-route.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="/js/myapp.js" type="text/javascript" charset="utf-8"></script>
-    <script src="http://ditu.google.cn/maps/api/js?sensor=false"></script>
-    <script src="http://rawgit.com/allenhwkim/angularjs-google-maps/master/build/scripts/ng-map.min.js"></script>
+    <!-- // <script src="http://rawgit.com/allenhwkim/angularjs-google-maps/master/build/scripts/ng-map.min.js"></script> -->
   </head>
 
   <body ng-controller="MainController as main">
     <div class="container">
-      <nav class="row navbar navbar-default">
-        <ul class="nav nav-pills">
-          <li ng-class="{active:main.isTab(1)}" ng-click="main.setTab(1)"><a>Location and Zoom</a></li>
-          <li ng-class="{active:main.isTab(2)}" ng-click="main.setTab(2)"><a>Direction</a></li>
-        </ul>
-      </nav>
-      <div class="container">
-        <div class="row">
-        <form>
-          <div class="form-group" ng-show="main.isTab(1)">
-            <label for="location">Location:</label>
-            <input id="location" type="text" ng-model="location">
-          </div>
-
-          <div class="form-group" ng-show="main.isTab(2)">
-            <label for="origin">Original:</label>
-            <input id="origin" type="text" ng-model="origin" ng-init="origin='london'">
-            <label for="destination">Destination:</label>
-            <input id="destination" type="text" ng-model="destination" ng-init="destination='berlin'">
-            <div class="travel-mode">   
-            <b>Mode of Travel: </b>
-            <select ng-model="travelMode" ng-init="travelMode='DRIVING'">
-            <option value="DRIVING">Driving</option>
-            <option value="WALKING">Walking</option>
-            <option value="BICYCLING">Bicycling</option>
-            <option value="TRANSIT">Transit</option>
-            </div>
-      </select>
-          </div>
-        </form>
-        </div>
-        <div class="row">
-        <div class="col-md-8 map-panel">
-          <map zoom="14" center={{location}} style="height:100%" ng-if="main.isTab(1)">
-           
-          </map>
-
-          <map zoom="14" center={{origin}} style="height:100%" ng-if="main.isTab(2)">
-            <directions
-              draggable="true"
-              panel="directions-panel"
-              travel-mode="{{travelMode}}"
-              origin="{{origin}}"
-              destination="{{destination}}">
-            </directions>
-          </map> 
-          <lable>Directions path length:</label>
-          {{map.directionsRenderers[0].directions.routes[0].overview_path.length}}
-          <!-- {{map.directionsRenderers[0].directions.routes[0].overview_path} -->
-        </div>
-        <div class="col-md-4 sidebar">
-          <div id="directions-panel" style="width: 28%; float:left; height: 100%; overflow: auto; padding: 0px 5px" ng-show="main.isTab(2)">
-        </div>
+      <div class="nav">
+        <div class="container">
+          <ul class="nav-tabs pull-left">
+            <li ng-class="{active:main.isActive(1)}" ng-click="main.setActive(1)"><a href="#">Home</a></li>
+            <li ng-class="{active:main.isActive(2)}" ng-click="main.setActive(2)"><a href="#/gmap">GMap</a></li>
+          </ul>
+          <ul class="nav-pills pull-right">
+            <li ng-class="{active:main.isActive(3)}" ng-click="main.setActive(3)"><a href="#/signup">Sign Up</a></li>
+            <li ng-class="{active:main.isActive(4)}" ng-click="main.setActive(4)"><a href="#/login">Log In</a></li>
+            <li ng-class="{active:main.isActive(5)}" ng-click="main.setActive(5)"><a href="#/about">About</a></li>
+          </ul>
         </div>
       </div>
+      <div ng-view></div>
+
       <footer class="footer">
       <div class="container">
         <p class="text-muted">Copyright 2015, SoleTrip</p>
